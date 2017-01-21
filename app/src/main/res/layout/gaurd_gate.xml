@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@color/colorPrimary"
+    android:layout_width="500dp"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/GateANameText"
+                android:layout_width="100dp"
+                android:text="GATE A"
+                android:textColor="#fff"
+                android:gravity="center"
+                android:layout_height="match_parent" />
+
+            <EditText
+                android:background="#ffff"
+                android:hint="PASSWORD"
+                android:gravity="start"
+                android:layout_width="match_parent"
+                android:id="@+id/GateANameEdit"
+                android:layout_margin="10dp"
+                android:layout_height="match_parent" />
+
+        </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="100dp"
+            android:id="@+id/GateBPhoneText"
+            android:text="GATE B"
+            android:textColor="#fff"
+            android:gravity="center"
+            android:layout_height="match_parent" />
+
+        <EditText
+            android:background="#ffff"
+            android:hint="PASSWORD"
+            android:gravity="start"
+            android:layout_width="match_parent"
+            android:id="@+id/GateBPhoneEdit"
+            android:layout_margin="10dp"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+
+
+
+    <LinearLayout
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:text="SUBMIT"
+                android:layout_width="wrap_content"
+                android:id="@+id/Submit_button"
+                android:layout_height="wrap_content" />
+    </LinearLayout>
+
+</LinearLayout>

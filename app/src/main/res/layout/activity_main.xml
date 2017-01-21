@@ -22,13 +22,75 @@
 
         <Button
             android:layout_weight="70"
+            android:id="@+id/CHANGE_GATE_PASSWORD_ID"
             android:layout_width="0dp"
+            android:text="Change GATE PASSWORD"
             android:layout_height="wrap_content" />
 
 
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_weight="20"
+        android:weightSum="100"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_weight="50"
+            android:weightSum="100"
+            android:gravity="center"
+            android:layout_height="0dp">
+
+            <EditText
+                android:id="@+id/PASS_NUMBER_ID"
+                android:hint="ENTER PASS NUMBER"
+                android:background="#ffff"
+                android:layout_weight="70"
+                android:layout_width="0dp"
+                android:gravity="center_horizontal"
+                android:layout_height="wrap_content" />
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:weightSum="100"
+            android:gravity="center"
+            android:layout_weight="50"
+            android:layout_height="0dp">
+            <Button
+                android:text="VIEW PASS"
+                android:layout_weight="70"
+                android:id="@+id/VIEW_PASS_ID"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_weight="20"
+        android:weightSum="100"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+
+
+
+        <Button
+            android:id="@+id/AUTHENTICATE_USER_ID"
+            android:text="AUTHENTICATE A GAURD"
+            android:layout_weight="70"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+
+
+    </LinearLayout>
 
 
 </LinearLayout>

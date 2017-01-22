@@ -1,10 +1,12 @@
 package com.firebase.pass.passadmin;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.ActionBarOverlayLayout;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.Window;
@@ -39,11 +41,38 @@ public class MainActivity extends AppCompatActivity {
         Gaurds= FirebaseDatabase.getInstance().getReference();
         dialog= new Dialog(this);
         dialog.setCanceledOnTouchOutside(false);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         AUTHENTICATE_GAURD=(Button)findViewById(R.id.AUTHENTICATE_USER_ID);
         VIEW_PASS=(Button)findViewById(R.id.VIEW_PASS_ID);
         CHANGE_GATE_PASSWORD=(Button)findViewById(R.id.CHANGE_GATE_PASSWORD_ID);
         PASS_NUMBER=(EditText)findViewById(R.id.PASS_NUMBER_ID);
 
+        mAuth.signInWithEmailAndPassword("admin@admin.com","Admin123");
+
+
+        VIEW_PASS.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+
+                String PASS_NUMBER_=PASS_NUMBER.getText().toString().trim();
+                if(!TextUtils.isEmpty(PASS_NUMBER_))
+                {
+
+                    if(mAuth.getCurrentUser()==null)
+                    {
+                        Toast.makeText(getApplicationContext(),"NULL",Toast.LENGTH_SHORT).show();
+                    }
+
+                    Intent I=new Intent(MainActivity.this,Display.class);
+                    I.putExtra("Pass",PASS_NUMBER_);
+                    startActivity(I);
+
+
+                }
+            }
+        });
 
 
 
@@ -54,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+
                 dialog.setContentView(R.layout.gaurd_gate);
                 dialog.show();
 
@@ -87,7 +116,6 @@ public class MainActivity extends AppCompatActivity {
         AUTHENTICATE_GAURD.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 dialog.setContentView(R.layout.gaurd_gate);
                 dialog.show();
 
@@ -95,10 +123,11 @@ public class MainActivity extends AppCompatActivity {
                 TextView Password=(TextView) dialog.findViewById(R.id.GateBPhoneText);
                 final EditText NAME=(EditText) dialog.findViewById(R.id.GateANameEdit);
                 final EditText PHONE=(EditText) dialog.findViewById(R.id.GateBPhoneEdit);
+                PHONE.setInputType(InputType.TYPE_CLASS_PHONE);
                 Button SUBMIT=(Button) dialog.findViewById(R.id.Submit_button);
                 NAME.setHint("Name of the Gaurd");
                 PHONE.setHint("Mobile number of the Gaurd");
-                Password.setText("Password");
+                Password.setText("Phone Number");
                 Name.setText("Name");
 
                 SUBMIT.setOnClickListener(new View.OnClickListener() {

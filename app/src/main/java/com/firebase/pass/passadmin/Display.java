@@ -3,6 +3,7 @@ package com.firebase.pass.passadmin;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.provider.ContactsContract;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -49,6 +50,7 @@ public class Display extends AppCompatActivity {
     private Button Verify_button;
     private int WIDTH_SCREEN;
     private int HEIGHT_SCREEN;
+
      @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -179,6 +181,8 @@ public class Display extends AppCompatActivity {
                      public void onClick(DialogInterface dialog, int which) {
 
                          ApplicationRef2.child(pass).child("ApplicationStatus").setValue("Verified");
+                         UsersRef.child("VerifiedUsers").child(pass).setValue("Verified");
+                         UsersRef.child("Users").child(app.Uid).child("Applications").child(pass).setValue("Verified");
                      }
                  });
 

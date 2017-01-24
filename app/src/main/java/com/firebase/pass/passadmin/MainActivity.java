@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,11 +33,20 @@ public class MainActivity extends AppCompatActivity {
     private Dialog dialog;
     private DatabaseReference Gaurds;
     private FirebaseAuth mAuth;
+    private ImageView CLEAR_VIEW;
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        CLEAR_VIEW=(ImageView) findViewById(R.id.CLEAR_VIEW_IMAGE);
         mAuth=FirebaseAuth.getInstance();
         Gaurds= FirebaseDatabase.getInstance().getReference();
         dialog= new Dialog(this);
@@ -46,6 +56,17 @@ public class MainActivity extends AppCompatActivity {
         VIEW_PASS=(Button)findViewById(R.id.VIEW_PASS_ID);
         CHANGE_GATE_PASSWORD=(Button)findViewById(R.id.CHANGE_GATE_PASSWORD_ID);
         PASS_NUMBER=(EditText)findViewById(R.id.PASS_NUMBER_ID);
+
+        CLEAR_VIEW.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                PASS_NUMBER.setText("");
+
+
+            }
+        });
+
 
         mAuth.signInWithEmailAndPassword("admin@admin.com","Admin123");
 

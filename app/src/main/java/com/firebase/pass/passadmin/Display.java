@@ -39,6 +39,7 @@ public class Display extends AppCompatActivity {
     private TextView Dateofjourney2;
      private TextView ID_No2;
     private TextView Purpose2;
+    private TextView DESTINATIONS;
      private ImageView Profile2;
     private  String pass;
     private TextView ID_Sources;
@@ -46,6 +47,7 @@ public class Display extends AppCompatActivity {
     private DatabaseReference ApplicationRef2;
     private DatabaseReference UsersRef;
     private FirebaseAuth mAuth;
+    private TextView GATE_NUMBER;
     private  Application app;
     private Button Verify_button;
     private int WIDTH_SCREEN;
@@ -60,6 +62,10 @@ public class Display extends AppCompatActivity {
          android.view.Display display = wm.getDefaultDisplay();
          DisplayMetrics metrics = new DisplayMetrics();
          display.getMetrics(metrics);
+
+
+         GATE_NUMBER=(TextView) findViewById(R.id.GATE);
+         DESTINATIONS=(TextView) findViewById(R.id.DESTINATION);
          WIDTH_SCREEN = metrics.widthPixels;
          HEIGHT_SCREEN = metrics.heightPixels;
         CarNumber=(TextView)findViewById(R.id.car_num);
@@ -109,6 +115,7 @@ public class Display extends AppCompatActivity {
 
                             app=dataSnapshot.getValue(Application.class);  //App crasehs due to this line
 
+                            GATE_NUMBER.setText(app.Gate);
                             Name2.setText(app.Name.toUpperCase());
                             Address2.setText(app.Address.toUpperCase());
                             Mobile2.setText(app.Mobile.toUpperCase());
@@ -120,6 +127,7 @@ public class Display extends AppCompatActivity {
                             CarNumber.setText(app.Carnumber.toUpperCase());
                             DriverName.setText(app.Drivername.toUpperCase());
                             Application_status2.setText(app.ApplicationStatus.toUpperCase());
+                            DESTINATIONS.setText(app.Destination);
 
 
 

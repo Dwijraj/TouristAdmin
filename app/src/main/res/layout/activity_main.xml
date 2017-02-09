@@ -99,5 +99,24 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_weight="20"
+        android:weightSum="100"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+
+
+
+        <Button
+            android:id="@+id/CHANGE_DESTINATION_PRICE"
+            android:text="PRICE CHANGE"
+            android:layout_weight="70"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+
+
+    </LinearLayout>
+
 
 </LinearLayout>

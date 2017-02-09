@@ -11,8 +11,10 @@ import android.text.TextUtils;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.CursorAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,9 +33,12 @@ public class MainActivity extends AppCompatActivity {
     private EditText PASS_NUMBER;
     private Button CHANGE_GATE_PASSWORD;
     private Dialog dialog;
+    private DatabaseReference ROOT_REF;
     private DatabaseReference Gaurds;
     private FirebaseAuth mAuth;
     private ImageView CLEAR_VIEW;
+    private static final  String[] PLACES={"","1","2","3"};
+    private Button CHANGE_DESTINATION_PASS_PRICE;
 
     @Override
     protected void onPause() {
@@ -46,6 +51,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        ROOT_REF=FirebaseDatabase.getInstance().getReference();
+        CHANGE_DESTINATION_PASS_PRICE=(Button) findViewById(R.id.CHANGE_DESTINATION_PRICE);
         CLEAR_VIEW=(ImageView) findViewById(R.id.CLEAR_VIEW_IMAGE);
         mAuth=FirebaseAuth.getInstance();
         Gaurds= FirebaseDatabase.getInstance().getReference();
@@ -56,6 +63,8 @@ public class MainActivity extends AppCompatActivity {
         VIEW_PASS=(Button)findViewById(R.id.VIEW_PASS_ID);
         CHANGE_GATE_PASSWORD=(Button)findViewById(R.id.CHANGE_GATE_PASSWORD_ID);
         PASS_NUMBER=(EditText)findViewById(R.id.PASS_NUMBER_ID);
+
+
 
         CLEAR_VIEW.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -204,6 +213,45 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        CHANGE_DESTINATION_PASS_PRICE.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                dialog.setContentView(R.layout.price_change);
+                dialog.getWindow().setLayout(600,200);
+                dialog.show();
+
+                Spinner PLACES_SPINNER=(Spinner) dialog.findViewById(R.id.PLACE_SELECT);
+                final EditText NEW_COST=(EditText) dialog.findViewById(R.id.COST_CHANGED);
+                Button MAKE_CHANGES=(Button) dialog.findViewById(R.id.BUTTON_PRICE_CHANGE);
+                CustomAdapter customAdapter1=new CustomAdapter(MainActivity.this,PLACES);
+                PLACES_SPINNER.setAdapter(customAdapter1);
+
+                MAKE_CHANGES.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                       // Toast.makeText(MainActivity.this,"HELLO" + CustomAdapter.PLACE_NAME,Toast.LENGTH_SHORT).show();
+
+                        if (!(CustomAdapter.PLACE_NAME.equals("NO PLACE SELECTED")||TextUtils.isEmpty(NEW_COST.getText().toString().trim()))&& TextUtils.isDigitsOnly(NEW_COST.getText().toString().trim()))
+                        {
+                            ROOT_REF.child("Prices").child(CustomAdapter.PLACE_NAME).setValue(NEW_COST.getText().toString().trim()).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+
+                                    Toast.makeText(getApplicationContext(),"CHANGES MADE SUCCESSFULLY",Toast.LENGTH_SHORT).show();
+                                }
+                            });
+
+                        }
+
+                    }
+                });
+
+
+
+
+            }
+        });
 
 
 

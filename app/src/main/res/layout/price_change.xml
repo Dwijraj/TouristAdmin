@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@color/colorPrimary"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:weightSum="100"
+        android:layout_height="wrap_content">
+
+        <Spinner
+            android:layout_width="0dp"
+            android:layout_weight="50"
+            android:id="@+id/PLACE_SELECT"
+            android:layout_height="wrap_content"></Spinner>
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_weight="50"
+            android:id="@+id/COST_CHANGED"
+            android:background="#ffff"
+            android:inputType="number"
+            android:layout_margin="8dp"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:layout_height="wrap_content">
+        <Button
+            android:text="MAKE CHANGES"
+            android:id="@+id/BUTTON_PRICE_CHANGE"
+            android:layout_width="wrap_content"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+</LinearLayout>
